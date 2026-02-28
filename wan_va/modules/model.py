@@ -232,8 +232,13 @@ class WanAttention(torch.nn.Module):
 
         new_id = self._next_cache_id(cache_name)
 
-        cache['k'][:, slots] = key
-        cache['v'][:, slots] = value
+        # cache['k'][:, slots] = key
+        # cache['v'][:, slots] = value
+        dst = cache['k']
+        cache['k'][:, slots] = key.to(dtype=dst.dtype, device=dst.device)
+        dst = cache['v']
+        cache['v'][:, slots] = value.to(dtype=dst.dtype, device=dst.device)
+
         cache['mask'][slots] = True
         cache['id'][slots] = new_id
         cache['is_pred'][slots] = is_pred

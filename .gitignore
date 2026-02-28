@@ -2,3 +2,7 @@ ckpt/
 **/__pycache__
 logs/
 pids.txt
+
+results/
+results**/
+visualization/
