@@ -664,6 +664,14 @@ class VA_Server:
         decoded_video = self.decode_one_video(pred_latent, 'np')[0]
         export_to_video(decoded_video, os.path.join(self.save_root, "demo.mp4"), fps=10)
 
+    @torch.no_grad()
+    def decode_visual_pred(self, pred_latent):
+        self.video_processor = VideoProcessor(vae_scale_factor=1)
+        torch.cuda.empty_cache()
+        decoded_video = self.decode_one_video(pred_latent, 'np')[0]
+        return decoded_video
+    
+
 def run(args):    
     
     config = VA_CONFIGS[args.config_name]
