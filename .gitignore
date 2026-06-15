@@ -1,1 +1,10 @@
 *.pyc
+
+ckpt
+
+logs/
+pids.txt
+results/
+results_test_fps/
+results_w_pred/
+visualization/
